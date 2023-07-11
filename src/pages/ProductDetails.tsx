@@ -1,16 +1,12 @@
 import ProductReview from '@/components/ProductReview';
 import { Button } from '@/components/ui/button';
 import { useSingleProductQuery } from '@/redux/api/apiSlice';
-import { IProduct } from '@/types/globalTypes';
-import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 export default function ProductDetails() {
   const { id } = useParams();
 
   const { data: product, isLoading, error } = useSingleProductQuery(id);
-
-  // const product = data?.find((item: { _id: number; }) => item._id === Number(id));
 
   return (
     <>
@@ -29,7 +25,7 @@ export default function ProductDetails() {
           <Button>Add to cart</Button>
         </div>
       </div>
-      <ProductReview />
+      <ProductReview id={id!} />
     </>
   );
 }
